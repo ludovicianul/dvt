@@ -1,6 +1,6 @@
 # DeV Tools / DVT - The Swiss Army Knife of CLI utilities
 
-`dvt` aims to bundle all small utilities used by developers (which typically is a mix of cli and
+`dvt` aims to bundle all small utilities used by developers (typically a mix of cli and
 online tools) into one binary that you can simply use in the console. No need for complex pipe-ing, 
 copy-pasting on different sites or keep installing cli utilities for every need. 
 
