@@ -28,7 +28,7 @@ Commands:
 # Installation
 
 `dvt` is compiled to native code using GraalVM. Check
-the [release page]() for binaries (Linux, MacOS, uberjar).
+the [release page](https://github.com/ludovicianul/dvt/releases/tag/dvt-1.0.0) for binaries (Linux, MacOS, uberjar).
 
 After download, you can make `dvt` globally available:
 
@@ -36,7 +36,7 @@ After download, you can make `dvt` globally available:
 sudo cp dvt-macos /usr/local/bin/dvt
 ```
 
-The uberjar can be run using `java -jar dvt`. Requires Java 11+.
+The uberjar can be run using `java -jar dvt-uberjar`. Requires Java 11+.
 
 # Autocomplete
 Run the following commands to get autocomplete:
