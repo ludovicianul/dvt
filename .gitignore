@@ -1,6 +1,6 @@
 dvt-linux
 dvt-macos
-dvt-uberjar.jar
+dvt-uberjar*
 #Maven
 target/
 pom.xml.tag

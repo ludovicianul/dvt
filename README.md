@@ -22,6 +22,7 @@ Commands:
   hash                 Perform hashing operations
   jwt                  Verify and decode JWTs
   json                 Manipulate JSON files
+  html                 Manipulate HTML files
 ```
 
 # Installation

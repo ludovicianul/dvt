@@ -3,11 +3,29 @@ package io.github.ludovicianul.utils;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class Utils {
+
+  public static void writeToOutput(String outputFile, String string) throws IOException {
+    if (outputFile == null) {
+      System.out.println(string);
+    } else {
+      Path path = Path.of(outputFile);
+      Files.writeString(path, string);
+    }
+  }
+
+  public static String parseInputRaw(Reader reader) throws IOException {
+    try (BufferedReader in = new BufferedReader(reader)) {
+      return in.lines().collect(Collectors.joining(System.lineSeparator()));
+    }
+  }
 
   public static List<String> parseSystemInAsList() throws IOException {
     try (BufferedReader in = new BufferedReader(new InputStreamReader(System.in))) {

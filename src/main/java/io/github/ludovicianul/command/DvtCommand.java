@@ -2,6 +2,7 @@ package io.github.ludovicianul.command;
 
 import io.github.ludovicianul.command.base64.Base64Command;
 import io.github.ludovicianul.command.hash.HashCommand;
+import io.github.ludovicianul.command.html.HtmlCommand;
 import io.github.ludovicianul.command.json.JsonCommand;
 import io.github.ludovicianul.command.jwt.JwtCommand;
 import io.github.ludovicianul.command.random.RandomCommand;
@@ -28,7 +29,8 @@ import picocli.CommandLine.Command;
       RandomCommand.class,
       HashCommand.class,
       JwtCommand.class,
-      JsonCommand.class
+      JsonCommand.class,
+      HtmlCommand.class
     })
 public class DvtCommand implements Runnable, QuarkusApplication {
   @Inject CommandLine.IFactory factory;
