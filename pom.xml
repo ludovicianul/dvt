@@ -157,4 +157,11 @@
       </properties>
     </profile>
   </profiles>
+  <scm>
+    <url>https://ludovicianul@github.com/ludovicianul/dvt.git</url>
+    <connection>scm:git:https://ludovicianul@github.com/ludovicianul/dvt.git</connection>
+    <developerConnection>scm:git:https://ludovicianul@github.com/ludovicianul/dvt.git
+    </developerConnection>
+    <tag>HEAD</tag>
+  </scm>
 </project>
