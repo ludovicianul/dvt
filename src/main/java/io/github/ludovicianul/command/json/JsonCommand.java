@@ -2,10 +2,12 @@ package io.github.ludovicianul.command.json;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParser;
 import io.github.ludovicianul.io.Dvt;
 import io.github.ludovicianul.utils.Utils;
-import java.io.IOException;
 import picocli.CommandLine;
+
+import java.io.IOException;
 
 @CommandLine.Command(
     name = "json",
@@ -30,7 +32,7 @@ public class JsonCommand implements Runnable {
     try {
       String theJson = this.getString();
       if (pretty) {
-        Dvt.println(GSON.toJson(theJson));
+        Dvt.println(GSON.toJson(JsonParser.parseString(theJson)));
       } else {
         Dvt.println(theJson);
       }
