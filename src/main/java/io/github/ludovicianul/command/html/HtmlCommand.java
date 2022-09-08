@@ -21,7 +21,7 @@ import us.codecraft.xsoup.Xsoup;
     usageHelpWidth = 100,
     description = "Manipulate HTML files",
     helpCommand = true,
-    version = "1.0.0")
+    version = "1.2.0")
 public class HtmlCommand implements Runnable {
 
   @Parameters(
@@ -71,6 +71,12 @@ public class HtmlCommand implements Runnable {
       description = "Sanitize the html input according to the given policy")
   Sanitize sanitize;
 
+  @CommandLine.Option(
+      names = {"-r", "--remove"},
+      paramLabel = "<SELECTOR>",
+      description = "Remove nodes matching given selector")
+  String remove;
+
   @Override
   public void run() {
     try {
@@ -96,8 +102,15 @@ public class HtmlCommand implements Runnable {
 
     this.setPrettyPrint(document);
     elements = this.evaluateSelector(document);
+    this.removeIfNeeded(elements);
 
     this.printResult(elements);
+  }
+
+  private void removeIfNeeded(Elements elements) {
+    if (remove != null) {
+      elements.select(remove).remove();
+    }
   }
 
   private Document sanitize(Document document) {

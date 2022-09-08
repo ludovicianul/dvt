@@ -9,7 +9,7 @@ copy-pasting on different sites or keep installing cli utilities for every need.
 ```shell
 ➜ dvt  -h
 
-dvt - command line dev tools; version 1.0.0
+dvt - command line dev tools; version 1.0.1
 
 Usage: dvt [-hV] [COMMAND]
   -h, --help      Show this help message and exit.
@@ -28,7 +28,7 @@ Commands:
 # Installation
 
 `dvt` is compiled to native code using GraalVM. Check
-the [release page](https://github.com/ludovicianul/dvt/releases/tag/dvt-1.0.0) for binaries (Linux, MacOS, uberjar).
+the [release page](https://github.com/ludovicianul/dvt/releases/tag/dvt-1.0.1) for binaries (Linux, MacOS, uberjar).
 
 After download, you can make `dvt` globally available:
 

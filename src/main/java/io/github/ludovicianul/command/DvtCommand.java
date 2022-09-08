@@ -20,8 +20,8 @@ import picocli.CommandLine.Command;
     name = "dvt",
     mixinStandardHelpOptions = true,
     usageHelpWidth = 100,
-    header = "dvt - command line dev tools; version 1.0.0\n",
-    version = "dvt 1.0.0",
+    header = "dvt - command line dev tools; version 1.2.0\n",
+    version = "dvt 1.2.0",
     subcommands = {
       AutoComplete.GenerateCompletion.class,
       Base64Command.class,
