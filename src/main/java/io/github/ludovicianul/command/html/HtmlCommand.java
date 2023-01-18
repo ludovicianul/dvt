@@ -1,13 +1,17 @@
 package io.github.ludovicianul.command.html;
 
-import io.github.ludovicianul.utils.Utils;
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.parser.Parser;
 import org.jsoup.safety.Cleaner;
 import org.jsoup.select.Elements;
 import picocli.CommandLine;
@@ -19,7 +23,7 @@ import us.codecraft.xsoup.Xsoup;
     name = "html",
     mixinStandardHelpOptions = true,
     usageHelpWidth = 100,
-    description = "Manipulate HTML files",
+    description = "Manipulate HTML and XML files",
     helpCommand = true,
     version = "1.2.0")
 public class HtmlCommand implements Runnable {
@@ -27,7 +31,7 @@ public class HtmlCommand implements Runnable {
   @Parameters(
       index = "0",
       paramLabel = "<selector>",
-      defaultValue = "empty",
+      defaultValue = "*",
       description = "The CSS selector")
   String selector;
 
@@ -86,7 +90,9 @@ public class HtmlCommand implements Runnable {
       } else {
         html = this.parseFile();
       }
-      this.processHtml(html);
+      if (html != null && !html.trim().isBlank()) {
+        this.processHtml(html);
+      }
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
@@ -94,7 +100,8 @@ public class HtmlCommand implements Runnable {
 
   private void processHtml(String html) throws IOException {
     Elements elements;
-    Document document = Jsoup.parse(html);
+    Parser parser = isXML(html) ? Parser.xmlParser() : Parser.htmlParser();
+    Document document = Jsoup.parse(html, parser);
 
     if (sanitize != null) {
       document = this.sanitize(document);
@@ -105,6 +112,10 @@ public class HtmlCommand implements Runnable {
     this.removeIfNeeded(elements);
 
     this.printResult(elements);
+  }
+
+  private boolean isXML(String text) {
+    return text.startsWith("<?xml");
   }
 
   private void removeIfNeeded(Elements elements) {
@@ -120,6 +131,7 @@ public class HtmlCommand implements Runnable {
   private void setPrettyPrint(Document document) {
     if (prettyPrint) {
       document.outputSettings().indentAmount(4).outline(true);
+      document.outputSettings().prettyPrint(true);
     } else {
       document.outputSettings().prettyPrint(false);
     }
@@ -138,21 +150,38 @@ public class HtmlCommand implements Runnable {
   private void printResult(Elements elements) throws IOException {
     if (attribute != null) {
       List<String> elementsWithAttribute = elements.eachAttr(attribute);
-      Utils.writeToOutput(
-          output,
-          elementsWithAttribute.stream().collect(Collectors.joining(System.lineSeparator())));
+      this.writeToOutput(
+        elementsWithAttribute.stream().collect(Collectors.joining(System.lineSeparator())));
     } else if (text) {
-      Utils.writeToOutput(output, elements.text());
+      this.writeToOutput(elements.text());
     } else {
-      Utils.writeToOutput(output, elements.outerHtml());
+      this.writeToOutput(elements.outerHtml());
+    }
+  }
+
+  private void writeToOutput(String string) throws IOException {
+    if (output == null) {
+      System.out.println(string);
+    } else {
+      Path path = Path.of(output);
+      Files.writeString(path, string);
+    }
+  }
+
+  private String parseInput(Reader reader) throws IOException {
+    try (BufferedReader in = new BufferedReader(reader)) {
+      return in.lines().collect(Collectors.joining(System.lineSeparator()));
     }
   }
 
   private String parseFile() throws IOException {
-    return Utils.parseInputRaw(new FileReader(file));
+    return this.parseInput(new FileReader(file));
   }
 
   private String parseSystemIn() throws IOException {
-    return Utils.parseInputRaw(new InputStreamReader(System.in));
+    if (System.in.available() > 0) {
+      return this.parseInput(new InputStreamReader(System.in));
+    }
+    return null;
   }
 }
