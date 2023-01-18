@@ -13,13 +13,13 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-    <quarkus.platform.version>2.12.0.Final</quarkus.platform.version>
+    <quarkus.platform.version>2.15.2.Final</quarkus.platform.version>
     <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
     <commons-text.version>1.9</commons-text.version>
     <guava.version>30.1.1-jre</guava.version>
     <jsonwebtoken.version>${jjwt-jackson.version}</jsonwebtoken.version>
     <gson.version>2.8.8</gson.version>
-    <xsoup.version>0.3.5</xsoup.version>
+    <xsoup.version>0.3.6</xsoup.version>
     <jsoup.version>1.15.3</jsoup.version>
     <jjwt-jackson.version>0.11.5</jjwt-jackson.version>
   </properties>
@@ -47,11 +47,6 @@
       <groupId>com.github.curious-odd-man</groupId>
       <artifactId>rgxgen</artifactId>
       <version>1.4</version>
-    </dependency>
-    <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-junit5</artifactId>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>io.jsonwebtoken</groupId>
