@@ -27,6 +27,14 @@ Commands:
 
 # Installation
 
+## Homebrew
+
+```bash
+brew install ludovicianul/tap/dvt
+```
+
+## Manually download binaries
+
 `dvt` is compiled to native code using GraalVM. Check
 the [release page](https://github.com/ludovicianul/dvt/releases/tag/dvt-1.0.1) for binaries (Linux, MacOS, uberjar).
 
