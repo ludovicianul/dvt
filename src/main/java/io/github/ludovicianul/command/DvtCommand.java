@@ -10,7 +10,8 @@ import io.github.ludovicianul.command.strcase.CaseCommand;
 import io.github.ludovicianul.io.Dvt;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
-import javax.inject.Inject;
+
+import jakarta.inject.Inject;
 import picocli.AutoComplete;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
@@ -20,8 +21,8 @@ import picocli.CommandLine.Command;
     name = "dvt",
     mixinStandardHelpOptions = true,
     usageHelpWidth = 100,
-    header = "dvt - command line dev tools; version 1.2.0\n",
-    version = "dvt 1.2.0",
+    header = "dvt - command line dev tools; version 1.2.1\n",
+    version = "dvt 1.2.1",
     subcommands = {
       AutoComplete.GenerateCompletion.class,
       Base64Command.class,
@@ -33,7 +34,8 @@ import picocli.CommandLine.Command;
       HtmlCommand.class
     })
 public class DvtCommand implements Runnable, QuarkusApplication {
-  @Inject CommandLine.IFactory factory;
+  @Inject
+  CommandLine.IFactory factory;
 
   @Override
   public void run() {
